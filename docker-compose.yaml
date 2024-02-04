@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  helloworld:
+    image: helloworld:2.0
+    build: ./helloworld
+  my_nginx:
+    image: my_nginx:2.0
+    build: ./my_nginx
+    ports:
+      - '30002:80'
+  tic_tac_toe:
+    image: my_ttt:2.0
+    build: ./tic_tac_toe
+    ports:
+      - '30001:3000'
