@@ -10,6 +10,7 @@ pipeline {
               cd ..
               pwd
             '''
+            sh 'pwd'
           }
       }
 
