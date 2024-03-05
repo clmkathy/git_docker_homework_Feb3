@@ -6,9 +6,10 @@ pipeline {
           steps {
           
             echo 'Hello World'
-            sh 'pwd'
-            sh 'cd ..'
-            sh 'pwd'
+            sh '''
+              cd ..
+              pwd
+            '''
           }
       }
 
@@ -43,7 +44,7 @@ pipeline {
       stage('Deploy Service') {
          steps {
           sh '''            
-            cd .. && pwd && docker compose down
+            docker compose down
             docker compose up -d
             docker compose ps
             '''
