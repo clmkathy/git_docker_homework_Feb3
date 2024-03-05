@@ -37,8 +37,8 @@ pipeline {
       stage('Deploy Service') {
          steps {
           sh '''
-            cd .. && docker-compose up -d
-            docker-compose ps
+            cd .. && docker compose up -d
+            docker compose ps
             '''
          }
       }
