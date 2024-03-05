@@ -31,8 +31,8 @@ pipeline {
                     docker login -u $USR -p $PWD
                     for img in clmkathy/helloworld:JR10 clmkathy/helloworld:latest clmkathy/tic_tac_toe:JR10 clmkathy/tic_tac_toe:latest clmkathy/my_nginx:JR10 clmkathy/my_nginx:latest; do docker push \$img; done;
                    """
-        }
+                }
+            }
       }
-
     }
 }
