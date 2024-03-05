@@ -10,8 +10,8 @@ pipeline {
               cd ..
               pwd
             '''
-            // sh 'cd .. && pwd'
-            // sh 'pwd'
+            sh 'cd .. && pwd'
+            sh 'pwd'
           }
       }
 
