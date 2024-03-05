@@ -4,7 +4,10 @@ pipeline {
     stages {
       stage('Hello') {
           steps {
+          
             echo 'Hello World'
+            sh 'pwd'
+            sh 'cd ..'
             sh 'pwd'
           }
       }
@@ -12,6 +15,7 @@ pipeline {
       stage('Build Image'){
         steps {
            sh '''
+              pwd
               cd helloworld && docker build -t clmkathy/helloworld:JR10 .
               cd ../my_nginx && docker build -t clmkathy/my_nginx:JR10 .
               cd ../tic_tac_toe && docker build -t clmkathy/tic_tac_toe:JR10 .
@@ -19,12 +23,14 @@ pipeline {
               docker tag clmkathy/my_nginx:JR10 clmkathy/my_nginx:latest
               docker tag clmkathy/tic_tac_toe:JR10 clmkathy/tic_tac_toe:latest
               docker images
+              pwd
               '''
         }
       }
 
       stage('Push Image'){
         steps {
+          sh "pwd"
          withCredentials([usernamePassword(credentialsId: 'dockerhub_creds', passwordVariable: 'PWD', usernameVariable: 'USR')]) {
                   sh """                        
                     docker login -u $USR -p $PWD
@@ -37,7 +43,7 @@ pipeline {
       stage('Deploy Service') {
          steps {
           sh '''
-            cd .. && docker compose up -d
+            docker compose up -d
             docker compose ps
             '''
          }
