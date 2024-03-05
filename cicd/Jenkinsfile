@@ -17,8 +17,7 @@ pipeline {
               cd ../tic_tac_toe && docker build -t clmkathy/tic_tac_toe:JR10 .
               docker tag clmkathy/helloworld:JR10 clmkathy/helloworld:latest
               docker tag clmkathy/my_nginx:JR10 clmkathy/my_nginx:latest
-              docker tag clmkathy/tic_tac_toe:JR10 clmkathy/tic_tac_toelatest
-              docker tag clmkathy/tic_tac_toelatest clmkathy/tic_tac_toe:latest
+              docker tag clmkathy/tic_tac_toe:JR10 clmkathy/tic_tac_toe:latest
               docker images
               '''
         }
@@ -38,8 +37,7 @@ pipeline {
       stage('Deploy Service') {
          steps {
           sh '''
-            docker-compose down
-            docker-compose up -d
+            cd .. && docker-compose up -d
             docker-compose ps
             '''
          }
