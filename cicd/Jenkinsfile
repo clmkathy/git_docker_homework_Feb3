@@ -61,6 +61,7 @@ pipeline {
         cleanWs()
         echo "Workspace cleaned"
         sh 'ls -la'
+        sh 'pwd'
         // Failure because test.txt had already been cleaned up
         // sh 'cat test.txt'
       }
